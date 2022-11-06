@@ -1,2 +1,2 @@
 # info2180-lab4 
-This is Lab 4 for Aybarinee Campbell Mendez 
+This is Lab 4 for Aybarinee Campbell Mendezz 
