@@ -63,10 +63,37 @@ $superheroes = [
   ], 
 ];
 
-?>
+$query=filter_input(INPUT_GET, "query", FILTER_SANITIZE_STRING);
+$reply="";
+if (strlen($query) >0)
+   { 
+    $reply = "<h3> Superhero not found. </h3>";
+    foreach ($superheroes as $superhero)
+     {
+      if ((strtolower($superhero['alias']) === strtolower($query)) || (strtolower($superhero['name']) === strtolower($query)))
+        {
+            $reply = "<h3>".strtoupper($superhero["alias"])."</h3>";
+            $reply .= "<h4>"."A.K.A ".strtoupper($superhero["name"])."</h4>";
+            $reply .= "<p>".$superhero["biography"]."</p>";
+        }
+     
+     } 
+    
+   }
+else 
+        {
+                $reply = "<h2>The list of avengers: </h2>";
+                $reply .= "<ul>";
+                foreach ($superheroes as $superhero)
+                {
+                $reply.="<li>".$superhero['alias']."</li>";
+                }
+                $reply.= "</ul>";
 
-<ul>
-<?php foreach ($superheroes as $superhero): ?>
-  <li><?= $superhero['alias']; ?></li>
-<?php endforeach; ?>
-</ul>
+         }
+echo $reply;
+
+
+
+
+?>
